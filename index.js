@@ -93,12 +93,14 @@ Car.prototype.fill = function (gallons) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(favoriteToy, name, age) {
-  Person.call(this, name, age );
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age, favoriteToy); //Don't know why this worked/how call works or why you need to pass favoriteToy into Person. Since Person doesn't have favoriteToy?
   this.favoriteToy = favoriteToy;
 }
 
-Baby.prototype.play = function (play) {
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function () {
   return "Playing with " + this.favoriteToy;
 }
 
@@ -106,10 +108,10 @@ Baby.prototype.play = function (play) {
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. When not assigned to anything in particular, this will refer to the broadest possible thing, which ends up being the window itself. 
+  2. Inside of a function, this generally refers to the object that called that function  (unless its more specifically assigned inside the function)
+  3. When making a new object wiht a constructor, this will refer to the new objects contructed, and not the contructor itself. 
+  4. Call and apply can be used to override whatever else this would apply to, and apply them to a specific thing. 
 */
 
 
